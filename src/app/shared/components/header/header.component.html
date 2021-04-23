@@ -1,0 +1,27 @@
+<header>
+  <nav class="desktop">
+    <div class="logo">
+        <img [src]="logo" alt="logo" width="25%">
+    </div>  
+    <ul>
+      <li>Início</li>
+      <li>Repositórios</li>
+    </ul>
+  </nav>
+
+  <div class="mobile">
+    <span class="menu-trigger" (click)="toggle()">
+      <i class="fas fa-bars" [ngClass]="menuOpen === true ? 'fas-white' : 'fas-purple'"></i>
+    </span>
+    <nav class="sidebar" [ngClass]="menuOpen ? 'show' : 'hidden'">
+      <ul>
+        <li>Início</li>
+        <li>Repositórios</li>
+      </ul>
+      <br>
+      <div class="logo">
+        <img [src]="logo" alt="logo" width="100%">
+      </div> 
+    </nav>
+  </div>
+</header>
