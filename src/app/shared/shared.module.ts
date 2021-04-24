@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { HeaderComponent } from './components/header/header.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -9,6 +10,7 @@ import { HeaderComponent } from './components/header/header.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule
   ],
   exports: [
       HeaderComponent
