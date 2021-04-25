@@ -12,6 +12,7 @@ import { RepositoryService } from './services/repository.service';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list';
+import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
   declarations: [
@@ -20,15 +21,15 @@ import { MatListModule } from '@angular/material/list';
   imports: [
     BrowserModule,
     MatAutocompleteModule,
-     MatButtonModule,
-     MatFormFieldModule,
-     MatInputModule,
-     FormsModule,
-     ReactiveFormsModule,
-     MatIconModule,
-     MatExpansionModule,
-     MatDialogModule,
-     MatListModule
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatExpansionModule,
+    MatDialogModule,
+    MatListModule,
   ],
   exports: [
     HomeComponent,

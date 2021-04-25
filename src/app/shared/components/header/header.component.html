@@ -15,8 +15,8 @@
     </span>
     <nav class="sidebar" [ngClass]="menuOpen ? 'show' : 'hidden'">
       <ul>
-        <li>Início</li>
-        <li>Repositórios</li>
+        <li [routerLink]="['/home']" routerLinkActive="router-link-active">Início</li>
+        <li [routerLink]="['/']" routerLinkActive="router-link-active">Repositórios</li>
       </ul>
       <br>
       <div class="logo">

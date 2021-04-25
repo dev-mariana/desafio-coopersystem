@@ -9,20 +9,19 @@
             placeholder="digite aqui..."
             aria-label="text"
             matInput
-            [formControl]="myControl"
-            (keyup)="onKey($event)"
-          />
+            [formControl]="search"
+            (keyup.enter)="getRepositories()">
         </mat-form-field>
       </form>
       <button mat-button>
-        <mat-icon aria-hidden="false" aria-label="search icon">search</mat-icon>
+        <mat-icon aria-hidden="false" aria-label="search icon" (click)="getRepositories()">search</mat-icon>
       </button>
     </div>
   </section>
 </section>
 <section>
-  <div class="content">
-    <div class="list" *ngFor="let item of repository">
+  <div class="content" *ngIf="show">
+    <div class="list" *ngFor="let item of filteredUser">
         <mat-list>
             <mat-list-item (click)="openDialog(dialog)">
                 <h3>{{ item?.name }}</h3>
@@ -41,4 +40,6 @@
         </mat-list>
     </div>
   </div>
+  <br>
+  <div *ngIf="!show" style="text-align: center;">Ainda não há conteúdo para mostrar</div>
 </section>

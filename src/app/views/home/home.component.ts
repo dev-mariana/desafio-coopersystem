@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Repository } from '../repository';
 import { RepositoryService } from '../services/repository.service';
 import { MatDialog } from '@angular/material/dialog';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -10,28 +10,32 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  repository: Repository[] = [];
+  
+  filteredUser: Repository[] = [];
   panelOpenState = false;
-  myControl = new FormControl();
-  value: string;
+  search = new FormControl();
+  show: boolean = false;
 
   constructor(private repositoryService: RepositoryService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.getRepositorys('dev-mariana');
   }
 
-  onKey(event: any) { 
-    this.value = event.target.value;
-    // console.log(this.value);
-  }
+  getRepositories() {
+    let username = this.search.value;
 
-  getRepositorys(username: string) {
-    this.repositoryService.getUserRepositories(username).subscribe((repository: Repository[]) => {
-      this.repository = repository;
-      console.log(repository);
-    })
+    if(!username) {
+      this.show = false;
+      return console.error("An error occurred!");
+    }
+
+    else {
+      this.show = true;
+      this.repositoryService.getUserRepositories(username).subscribe((user) => {
+        this.filteredUser = user;
+        // console.log(this.filteredUser);
+      })
+    }
   }
 
   openDialog(dialog) {
