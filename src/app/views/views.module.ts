@@ -12,7 +12,8 @@ import { RepositoryService } from './services/repository.service';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list';
-import { AppRoutingModule } from '../app-routing.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,8 @@ import { AppRoutingModule } from '../app-routing.module';
     MatExpansionModule,
     MatDialogModule,
     MatListModule,
+    MatProgressSpinnerModule,
+    BrowserAnimationsModule
   ],
   exports: [
     HomeComponent,

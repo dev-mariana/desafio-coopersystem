@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Repository } from '../repository';
 import { RepositoryService } from '../services/repository.service';
 import { MatDialog } from '@angular/material/dialog';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -15,14 +15,24 @@ export class HomeComponent implements OnInit {
   panelOpenState = false;
   search = new FormControl();
   show: boolean = false;
+  showSpinner: boolean = false;
 
   constructor(private repositoryService: RepositoryService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
+  loadData() {
+    this.showSpinner = true;
+
+    setTimeout(() => {
+      this.showSpinner = false
+    }, 1000);
+  }
+
   getRepositories() {
     let username = this.search.value;
+    this.loadData();
 
     if(!username) {
       this.show = false;

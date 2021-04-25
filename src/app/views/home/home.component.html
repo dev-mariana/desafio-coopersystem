@@ -21,25 +21,30 @@
 </section>
 <section>
   <div class="content" *ngIf="show">
-    <div class="list" *ngFor="let item of filteredUser">
-        <mat-list>
-            <mat-list-item (click)="openDialog(dialog)">
-                <h3>{{ item?.name }}</h3>
-                <ng-template #dialog>
-                    <mat-dialog-content class="mat-typography">
-                        <p>Descrição: {{ item?.description || 'Este repositório não possui descrição.' }}</p>
-                        <p>Criado em: {{ item?.created_at | date: 'dd/MM/yyyy' }}</p>
-                        <p>Última atualização: {{ item?.updated_at | date: 'dd/MM/yyyy' }}</p>
-                        <p>Criado por: {{ item?.owner?.login }}</p>
-                    </mat-dialog-content>
-                    <mat-dialog-actions align="end">
-                        <button mat-raised-button mat-dialog-close>Voltar</button>
-                    </mat-dialog-actions>
-                  </ng-template>
-            </mat-list-item>
-        </mat-list>
+    <div class="spinner" *ngIf="showSpinner">
+      <mat-spinner mode="indeterminate"></mat-spinner>
     </div>
+    <div class="list" *ngFor="let item of filteredUser">
+      <div *ngIf="!showSpinner">
+        <mat-list>
+          <mat-list-item (click)="openDialog(dialog)">
+              <h3>{{ item?.name }}</h3>
+              <ng-template #dialog>
+                  <mat-dialog-content class="mat-typography">
+                      <p>Descrição: {{ item?.description || 'Este repositório não possui descrição.' }}</p>
+                      <p>Criado em: {{ item?.created_at | date: 'dd/MM/yyyy' }}</p>
+                      <p>Última atualização: {{ item?.updated_at | date: 'dd/MM/yyyy' }}</p>
+                      <p>Criado por: {{ item?.owner?.login }}</p>
+                  </mat-dialog-content>
+                  <mat-dialog-actions align="end">
+                      <button mat-raised-button mat-dialog-close>Voltar</button>
+                  </mat-dialog-actions>
+                </ng-template>
+          </mat-list-item>
+      </mat-list>
+      </div>  
+      </div>
   </div>
   <br>
-  <div *ngIf="!show" style="text-align: center;">Ainda não há conteúdo para mostrar</div>
+  <div *ngIf="!show" style="text-align: center;">Ainda não há conteúdo para mostrar.</div>
 </section>
