@@ -4,13 +4,8 @@
       <form class="example-form">
         <mat-form-field class="example-full-width">
           <mat-label>Procurar...</mat-label>
-          <input
-            type="text"
-            placeholder="digite aqui..."
-            aria-label="text"
-            matInput
-            [formControl]="search"
-            (keyup.enter)="getRepositories()">
+          <input type="text" placeholder="digite aqui..." aria-label="text" matInput [formControl]="search"
+            (keyup.enter)="getRepositories()" />
         </mat-form-field>
       </form>
       <button mat-button>
@@ -24,27 +19,39 @@
     <div class="spinner" *ngIf="showSpinner">
       <mat-spinner mode="indeterminate"></mat-spinner>
     </div>
-    <div class="list" *ngFor="let item of filteredUser">
-      <div *ngIf="!showSpinner">
-        <mat-list>
-          <mat-list-item (click)="openDialog(dialog)">
+    <div *ngIf="filteredUser.length > 0">
+      <div class="list" *ngFor="let item of filteredUser">
+        <div *ngIf="!showSpinner">
+          <mat-list>
+            <mat-list-item (click)="openDialog(dialog)">
               <h3>{{ item?.name }}</h3>
               <ng-template #dialog>
-                  <mat-dialog-content class="mat-typography">
-                      <p>Descrição: {{ item?.description || 'Este repositório não possui descrição.' }}</p>
-                      <p>Criado em: {{ item?.created_at | date: 'dd/MM/yyyy' }}</p>
-                      <p>Última atualização: {{ item?.updated_at | date: 'dd/MM/yyyy' }}</p>
-                      <p>Criado por: {{ item?.owner?.login }}</p>
-                  </mat-dialog-content>
-                  <mat-dialog-actions align="end">
-                      <button mat-raised-button mat-dialog-close>Voltar</button>
-                  </mat-dialog-actions>
-                </ng-template>
-          </mat-list-item>
-      </mat-list>
-      </div>  
+                <mat-dialog-content class="mat-typography">
+                  <p>
+                    Descrição: {{ item?.description || "Este repositório não possui descrição." }}
+                  </p>
+                  <p>Criado em: {{ item?.created_at | date: "dd/MM/yyyy" }}</p>
+                  <p>
+                    Última atualização: {{ item?.updated_at | date: "dd/MM/yyyy" }}</p>
+                  <p>Criado por: {{ item?.owner?.login }}</p>
+                </mat-dialog-content>
+                <mat-dialog-actions align="end">
+                  <button mat-raised-button mat-dialog-close>Voltar</button>
+                </mat-dialog-actions>
+              </ng-template>
+            </mat-list-item>
+          </mat-list>
+        </div>
       </div>
+    </div>
+    <div *ngIf="filteredUser.length == 0" style="text-align: center">
+      <div *ngIf="!showSpinner">
+        Usuário não encontrado.
+      </div>
+    </div>
   </div>
-  <br>
-  <div *ngIf="!show" style="text-align: center;">Ainda não há conteúdo para mostrar.</div>
+  <br />
+  <div *ngIf="!show" style="text-align: center">
+    Ainda não há conteúdo para mostrar.
+  </div>
 </section>
