@@ -4,8 +4,8 @@
         <img [src]="logo" alt="logo" width="25%">
     </div>  
     <ul>
-      <li>Início</li>
-      <li>Repositórios</li>
+      <li [routerLink]="['/home']" routerLinkActive="router-link-active">Início</li>
+      <li [routerLink]="['/']" routerLinkActive="router-link-active">Repositórios</li>
     </ul>
   </nav>
 
